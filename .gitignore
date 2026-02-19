@@ -8,6 +8,9 @@ lerna-debug.log*
 node_modules/
 package-lock.json
 package.json
+server.js
+*.jpg
+*.png
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
