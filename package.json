@@ -1,0 +1,35 @@
+{
+  "name": "projeto-quinto-periodo-",
+  "version": "1.0.0",
+  "description": "Repositório do projeto individual a ser realizado na disciplina de Desen. Web/Mobile 5.",
+  "homepage": "https://github.com/GabrielFPagnon/Projeto-Quinto-Periodo-#readme",
+  "bugs": {
+    "url": "https://github.com/GabrielFPagnon/Projeto-Quinto-Periodo-/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabrielFPagnon/Projeto-Quinto-Periodo-.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "googleapis": "^171.4.0",
+    "node": "^25.6.1",
+    "react": "^19.2.4",
+    "vite": "^7.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
