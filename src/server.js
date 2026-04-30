@@ -14,7 +14,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 
 app.get('/', (req, res) => {
-    res.send('Servidor de Micro-saúde e Foco funcionando! 🚀')
+    res.send('Servidor de Micro-saúde e Foco funcionando!')
 });
 
 app.get('/auth', (req, res) => {
