@@ -1,0 +1,116 @@
+{
+  "v": 12,
+  "name": "Focused Monk",
+  "folders": [],
+  "requests": [
+    {
+      "v": "17",
+      "name": "Teste API Gemini FELIZ",
+      "method": "POST",
+      "endpoint": "https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=AIzaSyDLD8zDYn8SZXe3E0Hq7MBSYsKsnXEg3sQ",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "const jsonData = pw.response.body;\r\n\r\npw.test(\"Requisição concluída com sucesso (200)\", () => {\r\n    pw.expect(pw.response.status).toBe(200);\r\n});\r\n\r\npw.test(\"Resposta bem estruturada e texto gerado\", () => {\r\n    pw.expect(jsonData.candidates !== undefined).toBe(true);\r\n    \r\n    if (pw.response.status === 200 && jsonData.candidates !== undefined) {\r\n        const texto = jsonData.candidates[0].content.parts[0].text;\r\n        \r\n        pw.expect(typeof texto === \"string\").toBe(true);\r\n    }\r\n});",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n\t\"contents\": [{ \"parts\": [{ \"text\": \"Retorne 'Olá, mundo' e se apresente.\" }] }]\n}"
+      },
+      "requestVariables": [],
+      "responses": {},
+      "description": null
+    },
+    {
+      "v": "17",
+      "endpoint": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=IzaSyDt1CHlYkjF-zaUwU2czptGGBkEzRFoyW0",
+      "name": "Teste API Gemini TRISTE",
+      "params": [],
+      "headers": [],
+      "method": "POST",
+      "auth": {
+        "authType": "inherit",
+        "authActive": true
+      },
+      "preRequestScript": "",
+      "testScript": "const jsonData = pw.response.body;\r\n\r\npw.test(\"Rejeitar com erro (400 ou 403)\", () => {\r\n    const statusValido = pw.response.status === 400 || pw.response.status === 403;\r\n    pw.expect(statusValido).toBe(true);\r\n});\r\n\r\npw.test(\"Deve retornar objeto de erro do Google\", () => {\r\n    pw.expect(jsonData.error !== undefined).toBe(true);\r\n    \r\n    if (jsonData.error !== undefined) {\r\n        pw.expect(jsonData.error.message !== undefined).toBe(true);\r\n    }\r\n});",
+      "body": {
+        "contentType": "application/json",
+        "body": "{\n\t\"contents\": [{ \"parts\": [{ \"text\": \"Retorne 'Olá, mundo' e se apresente.\" }] }]\n}"
+      },
+      "requestVariables": [],
+      "responses": {},
+      "description": null
+    },
+    {
+      "v": "17",
+      "name": "Teste API Google Calendar TRISTE",
+      "method": "GET",
+      "endpoint": "https://www.googleapis.com/calendar/v3/calendars/primary/events",
+      "params": [],
+      "headers": [],
+      "preRequestScript": "",
+      "testScript": "const jsonData = pw.response.body;\r\n\r\npw.test(\"Retornar Status 401 Unauthorized\", () => {\r\n    pw.expect(pw.response.status).toBe(401);\r\n});\r\n\r\npw.test(\"Resposta deve conter objeto de erro\", () => {\r\n    pw.expect(jsonData.error !== undefined).toBe(true);\r\n    \r\n    if (jsonData.error !== undefined) {\r\n        pw.expect(jsonData.error.status).toBe(\"UNAUTHENTICATED\");\r\n    }\r\n});\r\n\r\n//token expirado!",
+      "auth": {
+        "authType": "bearer",
+        "authActive": true,
+        "addTo": "HEADERS",
+        "grantTypeInfo": {
+          "authEndpoint": "",
+          "tokenEndpoint": "",
+          "clientID": "",
+          "clientSecret": "",
+          "isPKCE": false,
+          "codeVerifierMethod": "S256",
+          "authRequestParams": [],
+          "refreshRequestParams": [],
+          "tokenRequestParams": [],
+          "grantType": "AUTHORIZATION_CODE",
+          "token": ""
+        },
+        "token": "<<token_calendar>>"
+      },
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {},
+      "description": null
+    },
+    {
+      "v": "17",
+      "endpoint": "https://www.googleapis.com/calendar/v3/calendars/primary/events",
+      "name": "Teste API Google Calendar FELIZ",
+      "params": [],
+      "headers": [],
+      "method": "GET",
+      "auth": {
+        "authType": "bearer",
+        "authActive": true,
+        "token": "<<new_token_calendar>>"
+      },
+      "preRequestScript": "",
+      "testScript": "const jsonData = pw.response.body;\r\n\r\npw.test(\"Conexão Autorizada (200)\", () => {\r\n    pw.expect(pw.response.status).toBe(200);\r\n});\r\n\r\npw.test(\"Retornou a lista de eventos\", () => {\r\n    pw.expect(jsonData.items !== undefined).toBe(true);\r\n    \r\n    if (jsonData.items !== undefined) {\r\n        pw.expect(Array.isArray(jsonData.items)).toBe(true);\r\n    }\r\n});\r\n\r\npw.test(\"Validar estrutura do primeiro evento\", () => {\r\n    if (jsonData.items !== undefined && jsonData.items.length > 0) {\r\n        const primeiroEvento = jsonData.items[0];\r\n        pw.expect(primeiroEvento.id !== undefined).toBe(true);\r\n        pw.expect(primeiroEvento.status !== undefined).toBe(true);\r\n    }\r\n});",
+      "body": {
+        "contentType": null,
+        "body": null
+      },
+      "requestVariables": [],
+      "responses": {},
+      "description": null
+    }
+  ],
+  "auth": {
+    "authType": "none",
+    "authActive": true
+  },
+  "headers": [],
+  "variables": [],
+  "description": "",
+  "preRequestScript": "",
+  "testScript": ""
+}
