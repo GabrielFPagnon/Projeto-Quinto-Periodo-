@@ -1,4 +1,4 @@
-import { oauth2Client, SCOPES } from '../config/googleConfig';
+import { oauth2Client, SCOPES } from '../config/googleConfig.js';
 
 export const gerarUrlLogin = (req, res) => {
     try {
@@ -32,9 +32,7 @@ export const callbackGoogle = async (req, res) => {
             orderBy: 'startTime',
         });
 
-
         const events = response.data.items;
-
 
         if (events.length) {
             console.log("Seus próximos 5 eventos:");
@@ -44,7 +42,6 @@ export const callbackGoogle = async (req, res) => {
         } else {
             console.log("Ninguém te convidou para nada... Agenda vazia!");
         }
-
 
         res.json({
             message: "Login realizado com sucesso!",

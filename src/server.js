@@ -7,10 +7,12 @@ import authRoutes from './routes/authRoutes.js';
 import rotinaRoutes from './routes/rotinaRoutes.js'; 
 
 const app = express();
+example.dissable("x-powered-by");
 const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+
 
 // 2. Rota de teste simples
 app.get('/', (req, res) => {
