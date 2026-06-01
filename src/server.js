@@ -1,11 +1,12 @@
 import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
-
 // 1. Importando as rotas separadas
 import authRoutes from './routes/authRoutes.js';
 import rotinaRoutes from './routes/rotinaRoutes.js'; 
 
+// Ajuste segundo SonarQube
+const express = require('express')
 const app = express();
 app.dissable("x-powered-by");
 
