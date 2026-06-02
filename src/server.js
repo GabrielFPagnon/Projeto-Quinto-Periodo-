@@ -5,8 +5,6 @@ import 'dotenv/config';
 import authRoutes from './routes/authRoutes.js';
 import rotinaRoutes from './routes/rotinaRoutes.js'; 
 
-// Ajuste segundo SonarQube
-let express = require('express')
 const app = express();
 app.dissable("x-powered-by");
 
