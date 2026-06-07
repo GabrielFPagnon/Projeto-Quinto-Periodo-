@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import 'dotenv/config';
-// 1. Importando as rotas separadas
+
 import authRoutes from './routes/authRoutes.js';
 import rotinaRoutes from './routes/rotinaRoutes.js'; 
 
@@ -14,16 +14,15 @@ app.use(cors());
 app.use(express.json());
 
 
-// 2. Rota de teste simples
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     res.send('Servidor de Micro-saúde e Foco funcionando!');
 });
 
-// 3. Conectando as rotas (Delegação)
-app.use('/auth', authRoutes); // Tudo que começar com /auth vai para o authRoutes
-app.use('/api', rotinaRoutes); // Tudo que começar com /api vai para o rotinaRoutes
+//Conectando as rotas (Delegação)
+app.use('/api/auth', authRoutes); // Tudo que começar com /auth vai para o authRoutes
+app.use('/api/rotinas', rotinaRoutes); // Tudo que começar com /api vai para o rotinaRoutes
 
-// 4. Iniciando o servidor (apenas UMA vez no final do arquivo)
+//Iniciando o servidor (apenas UMA vez no final do arquivo)
 app.listen(PORT, () => {
     console.log(`
         Servidor está online!
